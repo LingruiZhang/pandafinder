@@ -1,0 +1,15 @@
+{% extends 'finder/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Homepage
+{% endblock %}
+
+{% block body_block %}
+    <h1>Hello</h1>
+    <div>
+
+    <img src="{% static 'images/index.jpg' %}"
+    alt="Picture of Rango" /> <!-- New line -->
+    </div>
+{% endblock %}
