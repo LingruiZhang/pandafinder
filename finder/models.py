@@ -1,15 +1,11 @@
 from django.db import models
 
-
 # Create your models here.
-
-
-
-
+from django.template.defaultfilters import slugify
 
 
 class Restaurant(models.Model):
-    r_id = models.CharField(max_length=20, unique=True)
+    r_id = models.CharField(max_length=20, primary_key=True, unique=True)
     r_name = models.CharField(max_length=30)
     postcode = models.CharField(max_length=6)
     address = models.CharField(max_length=100)
@@ -18,8 +14,13 @@ class Restaurant(models.Model):
     website_url = models.URLField()
     menu = models.ImageField()
     photo = models.ImageField()
-    overall_rate = models.FloatField()
+    overall_rate = models.FloatField(null=True)
     category = models.CharField(max_length=10)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.r_id)
+        super(Restaurant, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Restaurants"
@@ -29,7 +30,7 @@ class Restaurant(models.Model):
 
 
 class Comment(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, null=True, blank=True, default=None)
     c_id = models.CharField(max_length=20, unique=True)
     content = models.TextField(default="")
     rate = models.FloatField(default=0)
@@ -38,3 +39,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.c_id
+
