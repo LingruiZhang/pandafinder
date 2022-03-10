@@ -17,6 +17,7 @@ headers = {
 
 from finder.models import Category, Restaurant
 
+response = requests.request("GET", "https://wyre-data.p.rapidapi.com/restaurants/town/glasgow", headers=headers)
+print(response.text)
+
 def populate():
-    response = requests.request("GET", "https://wyre-data.p.rapidapi.com/restaurants/town/hambleton", headers=headers)
-    print(response.text)

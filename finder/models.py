@@ -14,17 +14,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
         
-class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-
-    class Meta:
-        verbose_name_plural = "Categories"
-    
-    def __str__(self):
-        return self.name
 
 class Restaurant(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     r_name = models.CharField(max_length=100)
     postcode = models.CharField(max_length=6)
     address = models.CharField(max_length=200)
