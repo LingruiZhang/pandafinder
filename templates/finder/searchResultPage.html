@@ -1,0 +1,27 @@
+{% extends 'finder/base.html' %}
+
+
+{% block title_block %}
+    Search Result
+{% endblock %}
+
+{% block body_block %}
+    <h1>Search Result</h1>
+    <div>
+    {% if restaurants %}
+        <ul>
+            {% for restaurant in restaurants %}
+                <li>
+                    <a href="/finder/restaurant/{{ restaurant.slug }}/">{{ restaurant.r_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <strong> There are no restaurants information right now.</strong>\
+    {% endif %}
+    </div>
+{% endblock %}
+
+
+
+

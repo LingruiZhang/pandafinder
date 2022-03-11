@@ -5,6 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-
+    <div>
+        {% if restaurant %}
+            <h1>{{ restaurant.r_name }}</h1>
+            <ul>
+                <li> postcode: {{ restaurant.postcode }} </li>
+                <li> address: {{ restaurant.address }} </li>
+                <li> phone number: {{ restaurant.r_phone_num }}</li>
+                <li> email: {{ restaurant.r_email }} </li>
+                <li> website_url: {{ restaurant.website_url }} </li>
+                <li> menu: </li>
+                <img src="{{ MEDIA_URL }}{{ restaurant.menu }}" alt="{{ restaurant.r_name }}" />
+                <li> photo: </li>
+                <img src="{{ MEDIA_URL }}{{ restaurant.photo }}" alt="{{ restaurant.r_name }}" />
+                <li> overall rate: {{ restaurant.overall_rate }}</li>\
+                <li> category: {{ restaurant.category }}</li>
+            </ul>
+            {% if comments %}
+                <h2>Comment Display Area</h2>
+                <ul>
+                    {% for comment in comments %}
+                        <li> {{ comment.c_id }} {{ comment.content }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong> There is no comments yet!</strong>
+            {% endif %}
+                <h2>Comment Submit Area</h2>
+                {{ comment_form }}
+        {% else %}
+            <strong> There is no restaurant information!</strong>
+        {% endif %}
+    </div>
 </body>
 </html>
