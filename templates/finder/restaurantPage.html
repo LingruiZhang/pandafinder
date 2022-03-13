@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'finder/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Search Result
+{% endblock %}
+
+{% block body_block %}
     <div>
         {% if restaurant %}
             <h1>{{ restaurant.r_name }}</h1>
@@ -37,5 +38,4 @@
             <strong> There is no restaurant information!</strong>
         {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}
