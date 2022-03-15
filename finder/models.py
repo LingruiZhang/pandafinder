@@ -8,9 +8,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_num = PhoneNumberField(unique = True, null = False, blank = False)
+    phone_num = PhoneNumberField(unique=True, null=False, blank=False)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    
+
     def __str__(self):
         return self.user.username
 
@@ -42,7 +42,7 @@ class Restaurant(models.Model):
 
 class Comment(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, null=True, blank=True, default=None)
-    c_id = models.CharField(max_length=20, primary_key=True, unique=True, null=False)
+    c_id = models.CharField(max_length=20, primary_key=True, unique=True)
     content = models.TextField(default="")
     rate = models.FloatField(default=0)
     user_id = models.CharField(max_length=10)

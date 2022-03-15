@@ -4,11 +4,9 @@ from django.contrib import admin
 from django.contrib import admin
 from finder.models import Restaurant, Comment, UserProfile
 
+
 class RestaurantAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug':("r_id", )}
+    prepopulated_fields = {'slug': ("r_id",)}
+
 
 admin.site.register(Restaurant, RestaurantAdmin)
-admin.site.register(Comment)
-admin.site.register(UserProfile)
-
-
