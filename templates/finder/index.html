@@ -15,8 +15,16 @@
           </form>
     </div>
     <h1>login</h1>
+    <form id="login_form" method="post" action="{% url 'finder:search' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="submit" />
+    </form>
     <h1>register</h1>
     <div>
-    <a href="/finder/search/">Search Page</a><br/>
+    <a href="/finder/register/">Register</a>
     </div>
 {% endblock %}
