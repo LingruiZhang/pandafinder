@@ -29,3 +29,4 @@ with open("restaurant_info.json") as f2:
     restaurant_dict = json.load(f2)
 
 print(restaurant_dict[0])
+

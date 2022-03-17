@@ -1,7 +1,12 @@
+from cgitb import reset
+from multiprocessing import context
+from operator import contains
 from django.contrib.auth import authenticate, login
+from django.db.models import Q
 from django.db.models.functions import datetime
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.template import RequestContext
 
 from finder.models import Restaurant, Comment
 from finder.forms import CommentForm, UserForm, UserProfileForm
@@ -27,11 +32,12 @@ def search(request):
 
 
 def searchResult(request):
-    restaurant_list = Restaurant.objects.order_by("overall_rate")
-    context_dict = {}
-    context_dict["restaurants"] = restaurant_list
+    # restaurant_list = Restaurant.objects.order_by("overall_rate")
 
-    return render(request, "finder/searchResultPage.html", context=context_dict)
+    query = request.POST.get('keyword')
+    object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query))
+    
+    return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
 
 def recalculate_overall_rate(restaurant_id_slug):
     restaurant = Restaurant.objects.get(slug=restaurant_id_slug)
