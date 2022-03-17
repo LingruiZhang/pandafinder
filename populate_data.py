@@ -8,9 +8,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pandafinder.settings')
 import django
 
 django.setup()
-from finder.models import Restaurant, Comment
+from finder.models import Restaurant, Comment, UserProfile
+from django.contrib.auth.models import User
 
 letters = string.ascii_letters
+
 
 def populate():
     restaurant1_comments = [
@@ -187,7 +189,6 @@ def populate():
         },
     ]
 
-
     restaurants = {
         "0001": {
             "r_name": "Kimchi Cult",
@@ -216,7 +217,7 @@ def populate():
             "category": "Chinese",
             "comments": restaurant2_comments
         },
-        "0003":{
+        "0003": {
             "r_name": "Little Curry House",
             "postcode": "G11 5RG",
             "address": "41 Byres Rd, Glasgow",
@@ -413,10 +414,6 @@ def populate():
         },
     }
 
-
-
-
-
     for r_id, restaurant_data in restaurants.items():
         r = add_restaurant(r_id, restaurant_data["r_name"], restaurant_data["postcode"],
                            restaurant_data["address"], restaurant_data["r_phone_num"],
@@ -431,6 +428,38 @@ def populate():
         print(r.r_name)
         for c in Comment.objects.filter(restaurant=r):
             print(c.content)
+
+    users = {
+        "test_user":
+            {
+                "password": "1234567",
+                "user_profile": {
+                    "phone_num": "+4487654321",
+                    "picture": "profile_images/lingrui_profile.jpg",
+                }
+            }
+    }
+
+    for username, user in users.items():
+        print(username)
+        print(user)
+        u = add_user(username, user["password"])
+        add_user_profile(u, user["user_profile"]["phone_num"], user["user_profile"]["picture"])
+
+
+def add_user_profile(user, phone_num, picture):
+    user_profile = UserProfile.objects.get_or_create(user=user)[0]
+    user_profile.phone_num = phone_num
+    user_profile.picture = picture
+    user_profile.save()
+    return user_profile
+
+
+def add_user(username, password):
+    user = User.objects.get_or_create(username=username)[0]
+    user.password = password
+    user.save()
+    return user
 
 
 def add_comment(restaurant, c_id, content, rate, user_id):
@@ -458,16 +487,6 @@ def add_restaurant(r_id, r_name, postcode, address, r_phone_num, r_email, websit
     r.comments = comments
     r.save()
     return r
-
-def import_json():
-    with open("restaurant_info.json") as f:
-        restaurant_dict = json.load(f)
-    for restaurant in restaurant_dict[:20]:
-        add_restaurant(restaurant["_id"],
-                       restaurant["BusinessName"],
-                       restaurant["PostCode"],
-                       "",
-                       )
 
 
 if __name__ == '__main__':

@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
@@ -44,7 +45,12 @@ class Comment(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, null=True, blank=True, default=None)
     c_id = models.CharField(max_length=20, primary_key=True, unique=True)
     content = models.TextField(default="")
-    rate = models.FloatField(default=0)
+    rate = models.IntegerField(default=0,
+                               validators=[
+                                   MaxValueValidator(5),
+                                   MinValueValidator(0),
+                               ]
+                               )
     user_id = models.CharField(max_length=10)
     date = models.DateField(auto_now_add=True)
 

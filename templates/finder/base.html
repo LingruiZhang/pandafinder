@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <!--JavaScript-->
+  <script src="{% static 'js/restaurantPage.js' %}" type="text/javascript" defer="true"></script>
   <head lang="en">
 <html lang="en">
 <head>
@@ -25,13 +27,24 @@
     </title>
   </head>
 
-  <body>
 
+    {% if user.is_authenticated %}
+    howdy {{ user.username }}!
+    {% else %}
+    hey there partner!
+    {% endif %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        {% if user.is_authenticated %}
+        <img src="{{ MEDIA_URL }}{{ user.userprofile.picture }}" alt="Profile Picture"
+            style="width:5%;
+            height:5%;
+            object-fit:cover;" />
+        {% else %}
         <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture"
             style="width:5%;
             height:5%;
-            object-fit:cover;" /> 
+            object-fit:cover;" />
+        {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,7 +63,7 @@
                 </div>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
@@ -62,9 +75,15 @@
           </form>
         </div>
       </nav>
-      
+
     <div>
+        {% if user.is_authenticated %}
+        howdy {{ user.username }}!
+        {% else %}
+        hey there partner!
+        {% endif %}
         {% block body_block %}
+
         {% endblock %}
     </div>
     </hr>

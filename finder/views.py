@@ -12,10 +12,23 @@ import string
 from django.http import HttpResponse
 
 def index(request):
-    context_dict = {}
-    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
-    
-    return render(request, 'finder/index.html', context=context_dict)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username)
+        user = authenticate(username=username, password=password)
+        if user:
+            print(username + "2")
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('finder:search'))
+            else:
+                return HttpResponse("Your finder account is disabled.")
+        else:
+            print(f"Invalid login details: {username}, {password}")
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        return render(request, 'finder/index.html')
 
 
 def search(request):
@@ -30,7 +43,6 @@ def searchResult(request):
     restaurant_list = Restaurant.objects.order_by("overall_rate")
     context_dict = {}
     context_dict["restaurants"] = restaurant_list
-
     return render(request, "finder/searchResultPage.html", context=context_dict)
 
 def recalculate_overall_rate(restaurant_id_slug):
@@ -95,27 +107,9 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-
     # 'registered': registered之后可能会删掉，现在不确定
     return render(request, 'finder/register.html', context={'user_form': user_form,
                                                             'profile_form': profile_form,
                                                             'registered': registered
                                                             })
 
-
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return redirect(reverse('finder:index'))
-            else:
-                return HttpResponse("Your finder account is disabled.")
-        else:
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        return render(request, 'finder/login.html')

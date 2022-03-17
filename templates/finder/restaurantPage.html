@@ -6,10 +6,18 @@
 {% endblock %}
 
 {% block body_block %}
-    <div class="container", id="containerStyle">
+    <div class="container">
         {% if restaurant %}
             <i class="bi-arrow-through-heart-fill", id="doubleHeart"></i>
             <i id="restaurantName">{{ restaurant.r_name }}</i>
+            <div>
+                <span class="fa fa-star fa-2x" id="firstStar"></span>
+                <span class="fa fa-star fa-2x" id="secondStar"></span>
+                <span class="fa fa-star fa-2x" id="thirdStar"></span>
+                <span class="fa fa-star fa-2x" id="fourthStar"></span>
+                <span class="fa fa-star fa-2x" id="fifthStar"></span>
+                <span id="overallRate">{{restaurant.overall_rate }}</span>
+            </div>
             <br>
             <br>
             <div class="row">
@@ -49,7 +57,6 @@
                     <img class="square" src="{{ MEDIA_URL }}{{ fafsdfsa }}"/>
                     <br>
                     <br>
-
                     <i class="bi-bullseye", id="subtitleIcon"></i>
                     <i id="overallFont">Information</i> <br><br><br>
                     <i class="bi-pin-map", id="inforIcon"></i>
@@ -74,12 +81,19 @@
                 <div id="commentSession">
                     <div class="container">
                         {% for comment in comments %}
-                            <div class="row", id="commentSession">
+                            <span id="allComments" hidden>{{ comments }} </span>
+                            <div class="row" id="commentSession">
                                 <div class="col-2"> {{ comment.user_id }} </div>
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col">
-                                            Rate: {{ comment.rate }}
+                                            <span>Rate: </span>
+                                            <span class="fa fa-star fa-1x" id="c_first"></span>
+                                            <span class="fa fa-star fa-1x" id="c_second"></span>
+                                            <span class="fa fa-star fa-1x" id="c_third"></span>
+                                            <span class="fa fa-star fa-1x" id="c_fourth"></span>
+                                            <span class="fa fa-star fa-1x" id="c_fifth"></span>
+                                            <span id="commentRate">{{ comment.rate }}</span>
                                         </div>
                                         <div class="col", id="datetimeStyle">
                                             Posted On {{ comment.date }}

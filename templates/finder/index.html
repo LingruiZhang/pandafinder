@@ -15,7 +15,7 @@
           </form>
     </div>
     <h1>login</h1>
-    <form id="login_form" method="post" action="{% url 'finder:search' %}">
+    <form id="login_form" method="post" action="{% url 'finder:index' %}">
         {% csrf_token %}
         Username: <input type="text" name="username" value="" size="50" />
         <br />

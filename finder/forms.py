@@ -11,7 +11,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password',)
+        fields = ('username', 'password',)
 
 
 class UserProfileForm(forms.ModelForm):
@@ -25,7 +25,7 @@ class UserProfileForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     c_id = forms.CharField(widget=forms.HiddenInput(), required=False)
     content = forms.CharField(widget=forms.Textarea, help_text="Please enter your comment!")
-    rate = forms.FloatField(help_text="Please rate by stars!")
+    rate = forms.IntegerField(help_text="Please rate by stars!")
     user_id = forms.CharField(widget=forms.HiddenInput, initial="0001")
 
     class Meta:
