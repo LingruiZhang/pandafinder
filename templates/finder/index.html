@@ -2,29 +2,57 @@
 {% load static %}
 
 {% block title_block %}
-  
+  Index
 {% endblock %}
 
 
 {% block body_block %}
-    <div class="container" style="background: rgba(0, 0, 0, .5); 
-    background-image: url('/static/images/restaurant.jpg');">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-          </form>
-    </div>
-    <h1>login</h1>
-    <form id="login_form" method="post" action="{% url 'finder:index' %}">
-        {% csrf_token %}
-        Username: <input type="text" name="username" value="" size="50" />
-        <br />
-        Password: <input type="password" name="password" value="" size="50" />
-        <br />
-        <input type="submit" value="submit" />
-    </form>
-    <h1>register</h1>
     <div>
-    <a href="/finder/register/">Register</a>
+    <main class="main" role="main">
+        <div class="container" id="containerStyle">
+            <div class="row">
+                <div class="offset-md-3 col-md-6">
+                    <h2 id = "h2Style">Welcome</h2>
+                    <form id="login_form" method="post" action="{% url 'finder:index' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Username</label>
+                                <img src="{% static 'images/user.png' %}"   style="width:15%;
+                                height:15%;
+                                object-fit:cover;
+                                position: relative;
+                                top: 40px;
+                                right:120px;"></img>
+                            <input type="text" aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" name="username" placeholder="Please enter username"  required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <img src="{% static 'images/password.png' %}"   style="width:15%;
+                            height:15%;
+                            object-fit:cover;
+                            position: relative;
+                            top: 40px;
+                            right:120px;"></img>
+                            <input type="password" class="form-control" id="exampleInputPassword"  name="password" placeholder="Please enter password">
+                        </div>
+                        <br />
+                        <button class="btn btn-success btn-block" type="submit" value="submit" id="buttonStyle">Login</button>
+                    </form>
+                    <div>
+                    <br>
+                    <a href="{% url 'finder:register' %}" id="buttonFont">
+                        <button type="button" class="btn btn-danger btn-block">Register</button>
+                    </a>
+                    <br>
+                    <a href="{% url 'finder:search' %}">
+                        <button type="button" class="btn btn-success btn-block">As a Guest</button>
+                    </a>
+                    </div>
+                </div>
+            </div>
     </div>
+    </main>
+    </div>
+
+
 {% endblock %}

@@ -4,3 +4,18 @@ body {
   background-attachment: fixed;
   background-size: 100% 100%;
 }
+
+.cat {
+ height: 10px;
+ width: 10px;
+}
+
+img {
+ max-width: 100%;
+ max-height: 100%;
+}
+
+#profileImage {
+  max-width:5%;
+  max-height:5%;
+}

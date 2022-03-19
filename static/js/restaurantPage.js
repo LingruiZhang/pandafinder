@@ -1,13 +1,10 @@
-
-
 const first = document.getElementById("firstStar");
 const second = document.getElementById("secondStar");
 const third = document.getElementById("thirdStar");
 const fourth = document.getElementById("fourthStar");
 const fifth = document.getElementById("fifthStar");
 
-const rate = document.getElementById("overallRate");
-console.log("i am here")
+let rate = document.getElementById("overallRate");
 if (Math.floor(parseInt(rate.innerHTML)) == 1){
     first.classList.add("checked")
 }
@@ -33,20 +30,21 @@ else if (Math.floor(parseInt(rate.innerHTML)) == 5){
     fourth.classList.add("checked")
     fifth.classList.add("checked")
 }
-console.log("zahuishi4");
 
 
-const c_first = document.getElementById("c_first");
-const c_second = document.getElementById("c_second");
-const c_third = document.getElementById("c_third");
-const c_fourth = document.getElementById("c_fourth");
-const c_fifth = document.getElementById("c_fifth");
+const elements = document.querySelectorAll(".stars");
+for(let i = 0; i<elements.length;i++){
+    rate = document.getElementsByClassName("rate")[i].innerHTML;
+    for(let j = 0; j<parseInt(rate); j++){
+        elements[i].getElementsByClassName("fa fa-star fa-1x")[j].classList.add("checked")
+    }
+}
 
-
-const comment_rate = document.getElementById("commentRate").innerHTML
-console.log(comment_rate)
-const starList = [c_first, c_second, c_third, c_fourth, c_fifth]
-for (let i = 0; i<Math.floor(parseInt(comment_rate)); i++){
-    console.log(starList[i])
-    starList[i].classList.add("checked")
+const stars = document.querySelectorAll(".starRate");
+console.log(stars)
+for(let i = 0; i<stars.length;i++){
+    label = document.getElementsByClassName("label")[i].innerHTML;
+    for(let j = 0; j<parseInt(label); j++){
+        stars[i].getElementsByClassName("fa fa-star c")[j].classList.add("checked")
+    }
 }

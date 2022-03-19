@@ -9,4 +9,5 @@ urlpatterns = [
     #path('login/', views.user_login, name='login'),
     path("searchResult/", views.searchResult, name='searchResult'),
     path("restaurant/<slug:restaurant_id_slug>/", views.show_restaurant, name='show_restaurant'),
+    path("logout/", views.user_logout, name='logout'),
 ]

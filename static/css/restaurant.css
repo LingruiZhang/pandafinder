@@ -26,6 +26,13 @@
     object-fit: cover;
 }
 
+#titleStars {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: cursive;
+    color:#0E185F;
+}
+
 #overallFont {
     font-size: 25px;
     font-weight: bold;
@@ -70,3 +77,16 @@ textarea{
 .checked {
   color: orange;
 }
+
+#noComment {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: cursive;
+    color:#2FA4FF;
+}
+
+#map {
+  height: 500px;
+  width: 500px;
+}
+
