@@ -6,20 +6,68 @@ Register
 {% endblock %}
 
 {% block body_block %}
-<h1>Register for Pandafinder</h1>
-{% if registered %}
-Panda says: <strong>thank you for registering!</strong>
-<a href="{% url 'finder:index' %}">Return to the homepage.</a><br />
-{% else %}
-Rango says: <strong>register here!</strong><br />
-<form id="user_form" method="post" action="{% url 'finder:register' %}" enctype="multipart/form-data">
 
-    {% csrf_token %}
-
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-
-    <input type="submit" name="submit" value="Register" />
-</form>
-{% endif %}
+    <main class="main" role="main">
+        <div class="container" id="containerStyle">
+            {% if registered %}
+            Panda says: <strong>Thank you for registering!</strong><br>
+            <a href="{% url 'finder:index' %}">Return to the homepage.</a><br />
+            {% else %}
+                <div class="row">
+                    <div class="offset-md-3 col-md-6">
+                    <form id="user_form" method="post" action="{% url 'finder:register' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% csrf_token %}
+                            <h2 style="text-align: center;">Register</h2>
+                            <div class="form-group" >
+                                <label for="user">Username</label>
+                                <img src="{% static 'images/user.png' %}"   style="width:15%;
+                                height:15%;
+                                object-fit:cover;
+                                position: relative;
+                                top: 40px;
+                                right:120px;"></img>
+                                <input type="text" class="form-control" required_id="id_username" name="username" placeholder="Please enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputPhone">Phone:</label>
+                                <img src="{% static 'images/phone.png' %}"   style="width:15%;
+                                height:15%;
+                                object-fit:cover;
+                                position: relative;
+                                top: 40px;
+                                right:100px;"></img>
+                                <input type="tel" class="form-control" id="id_phone_num" name="phone_num" placeholder="your mobile phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputPassword1">Password:</label>
+                                <img src="{% static 'images/password.png' %}"   style="width:15%;
+                                height:15%;
+                                object-fit:cover;
+                                position: relative;
+                                top: 40px;
+                                right:120px;"></img>
+                                <input type="password" class="form-control" id="Id_password" name="password" required placeholder="Please enter password">
+                            </div>
+                            <div class="form-group">
+                                <label for="id_picture">Picture:</label>
+                                <input type="file" name="picture" accept="image/*" id="id_picture">
+                            </div>
+                            <br>
+                            <button class="btn btn-success btn-block" type="submit" value="register" id="buttonStyle">Register</button>
+                    </form>
+                    <br>
+                    <a href="{% url 'finder:index' %}" id="buttonFont">
+                        <button type="button" class="btn btn-danger btn-block" >Back</button>
+                    </a>
+                    <br>
+                    <a href="{% url 'finder:search' %}">
+                        <button type="button" class="btn btn-success btn-block">As a Guest</button>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
 {% endblock %}

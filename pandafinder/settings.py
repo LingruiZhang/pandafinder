@@ -115,6 +115,7 @@ PASSWORD_HASHERS = (
 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )
 
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.AllowAllUsersModelBackend', )
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
