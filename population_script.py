@@ -1431,14 +1431,14 @@ def populate():
             },
     }
 
-    # for username, user in users.items():
-    #     print(username)
-    #     print(user)
-    #     u = add_user(username, user["password"])
-    #     add_user_profile(u, user["user_profile"]["phone_num"], user["user_profile"]["picture"])
+    for username, user in users.items():
+        print(username)
+        print(user)
+        u = add_user(username, user["password"])
+        add_user_profile(u, user["user_profile"]["phone_num"], user["user_profile"]["picture"])
 
     for r_id, restaurant in restaurants.items():
-        print(restaurant["r_phone_num"])
+        # print(restaurant["r_phone_num"])
         add_restaurant(r_id, restaurant["r_name"], restaurant["postcode"],
                        restaurant["address"], restaurant["r_phone_num"],
                        restaurant["r_email"], restaurant["website_url"],
@@ -1450,7 +1450,9 @@ def populate():
         restaurant = Restaurant.objects.all()[i]
         for comment in commends_list[i]:
             userIndex = random.randint(0, 3)
+            print(len(UserProfile.objects.all()))
             userprofile = UserProfile.objects.all()[userIndex]
+
             add_comment(restaurant, userprofile, comment["c_id"], comment["content"], comment["rate"])
 
 
