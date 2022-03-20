@@ -94,3 +94,19 @@ textarea{
     width:100px;
     height:100px;"
 }
+
+
+#copyButton{
+    transition-duration: 0.4s;
+    width: 150px;
+    height:100px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #2FA4FF;
+}
+
+#copyButton:hover{
+    background-color: #2FA4FF;
+    color: white;
+}

@@ -39,11 +39,12 @@ def search(request):
 
 def searchResult(request):
     # restaurant_list = Restaurant.objects.order_by("overall_rate")
-
-    query = request.POST.get('keyword')
-    object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query))
-    
-    return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
+    if request.method == 'POST':
+        query = request.POST.get('keyword')
+        object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query) | Q(category__icontains=query) | Q(postcode__icontains=query)).order_by('-overall_rate')[:10]
+        return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
+    else:
+        return render(request, "finder/searchResultPage.html", context={'restaurants': None})
 
 
 def recalculate_overall_rate(restaurant_id_slug):
@@ -90,6 +91,7 @@ def show_restaurant(request, restaurant_id_slug):
             else:
                 print(form.errors)
     context_dict["form"] = form
+    context_dict["link"] = request.build_absolute_uri
     return render(request, "finder/restaurantPage.html", context=context_dict)
 
 

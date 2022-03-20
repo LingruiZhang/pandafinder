@@ -8,9 +8,23 @@
 }
 
 #h2Style{
-    text-align: center;
+    position: relative;
+    top: 10px;
+    font-size: 30px;
+    white-space: nowrap;
+    font-family: monospace;
+    font-weight: bold;
+    color:#0E185F;
 }
 
 #buttonFont{
     color:#FFFFFF;
+}
+
+.logo{
+    position: relative;
+    top: 10px;
+    left:80px;
+    height:150px;
+    width:150px;
 }

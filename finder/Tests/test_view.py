@@ -65,7 +65,7 @@ class TestView(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed((response, "finder/index.html"))
 
-    def test_index_POST(self):
+    def test_log_in_POST(self):
         response = self.client.post(reverse("finder:index"), {
             "username": self.user.username,
             "password": self.user.password,

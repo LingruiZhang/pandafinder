@@ -12,7 +12,10 @@
         <div class="container" id="containerStyle">
             <div class="row">
                 <div class="offset-md-3 col-md-6">
-                    <h2 id = "h2Style">Welcome</h2>
+                    <div class="logo">
+                        <img src="{% static 'images/logo.jpg' %}">
+                    </div>
+                    <span id = "h2Style">Welcome To PandaFinder!</span>
                     <form id="login_form" method="post" action="{% url 'finder:index' %}">
                         {% csrf_token %}
                         <div class="form-group">
@@ -24,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <div class="icon">
-                                    <img src="{% static 'images/user.png' %}">
+                                    <img src="{% static 'images/password.png' %}">
                             </div>
                             <span>Password:</span>
                             <input type="password" class="form-control" id="exampleInputPassword"  name="password" placeholder="Please enter password">

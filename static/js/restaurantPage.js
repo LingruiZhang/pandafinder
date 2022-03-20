@@ -56,3 +56,12 @@ $('#menu').click(function(){
     $(this).toggleClass('min');
     $(this).toggleClass('max');
 });
+
+//JQuery - copy the current URL
+function copy_r_link(element) {
+  var $input = $("<input>");
+  $("body").append($temp);
+  $input.val($(element).text()).select();
+  document.execCommand("copy");
+  $input.remove();
+}
