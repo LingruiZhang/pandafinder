@@ -1,9 +1,9 @@
+from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.db.models.functions import datetime
+
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
 from finder.models import Restaurant, Comment
 from finder.forms import CommentForm, UserForm, UserProfileForm
 import random
@@ -39,10 +39,12 @@ def search(request):
 
 
 def searchResult(request):
-    restaurant_list = Restaurant.objects.order_by("overall_rate")
-    context_dict = {}
-    context_dict["restaurants"] = restaurant_list
-    return render(request, "finder/searchResultPage.html", context=context_dict)
+    # restaurant_list = Restaurant.objects.order_by("overall_rate")
+
+    query = request.POST.get('keyword')
+    object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query))
+    
+    return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
 
 
 def recalculate_overall_rate(restaurant_id_slug):

@@ -1439,7 +1439,9 @@ def populate():
         restaurant = Restaurant.objects.all()[i]
         for comment in commends_list[i]:
             userIndex = random.randint(0, 3)
+            print(len(UserProfile.objects.all()))
             userprofile = UserProfile.objects.all()[userIndex]
+
             add_comment(restaurant, userprofile, comment["c_id"], comment["content"], comment["rate"])
 
 
