@@ -104,7 +104,6 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             if 'picture' in request.FILES:
-                print("picture")
                 profile.picture = request.FILES['picture']
             profile.save()
             registered = True
@@ -113,7 +112,6 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    # 'registered': registered之后可能会删掉，现在不确定
     return render(request, 'finder/register.html', context={'user_form': user_form,
                                                             'profile_form': profile_form,
                                                             'registered': registered
