@@ -40,17 +40,11 @@
                             height:325px;
                             object-fit: cover;}
                     </style>
-                    <script>
-                        $(function(){
-                            $('#menu').click(function(){
-                                $(this).toggleClass('min');
-                                $(this).toggleClass('max');
-                            });
-                        });
-                    </script>
-                    <img id='menu' class='min' src='{{ MEDIA_URL }}{{ restaurant.menu }}' alt="menu">
+                    <div>
+                        <img id='menu' class='min' src='{{ MEDIA_URL }}{{ restaurant.menu }}' alt="menu">
+                    </div>
                 </div>
-                <div class="col">
+                <div class="col">x
                     <div>
                         <i class="bi-bullseye" id="subtitleIcon"></i>
                         <i id="overallFont">Information</i> <br><br><br>
@@ -86,10 +80,8 @@
                             <span id="allComments" hidden>{{ comments }} </span>
                             <div class="row" id="commentSession">
                                 <div class="col-2">
-                                    <div>
-                                        <img class="square"  src="{{ MEDIA_URL }}{{ comment.userprofile.picture }}" alt="user_picture"
-                                            style="width:50px;
-                                                height:50px;"/>
+                                    <div class="commentUserProfile">
+                                        <img class="square"  src="{{ MEDIA_URL }}{{ comment.userprofile.picture }}" alt="user_picture"/>
                                     </div>
                                     <div> {{ comment.userprofile.user.username }} </div>
                                 </div>
@@ -132,7 +124,7 @@
                     <i class="bi-pencil-square" id="subtitleIcon"></i>
                     <i id="overallFont">Make Your Own Comment!</i>
                     <div>
-                        <form id="comment_form" method="post" action="/finder/restaurant/{{ restaurant.slug }}/" enctype="multipart/form-data">
+                        <form id="comment_form" method="post" action="{% url "finder:show_restaurant"  restaurant.slug %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for hidden in form.hidden_fields %}
                                 {{ hidden }}

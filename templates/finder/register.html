@@ -20,37 +20,31 @@ Register
                         {% csrf_token %}
                             <h2 style="text-align: center;">Register</h2>
                             <div class="form-group" >
-                                <label for="user">Username</label>
-                                <img src="{% static 'images/user.png' %}"   style="width:15%;
-                                height:15%;
-                                object-fit:cover;
-                                position: relative;
-                                top: 40px;
-                                right:120px;"></img>
-                                <input type="text" class="form-control" required_id="id_username" name="username" placeholder="Please enter username">
+                                <div class="icon">
+                                    <img src="{% static 'images/user.png' %}">
+                                </div>
+                                <span>Username:</span>
+                                <input type="text" class="form-control" required_id="id_username" name="username" placeholder="username">
                             </div>
                             <div class="form-group">
-                                <label for="InputPhone">Phone:</label>
-                                <img src="{% static 'images/phone.png' %}"   style="width:15%;
-                                height:15%;
-                                object-fit:cover;
-                                position: relative;
-                                top: 40px;
-                                right:100px;"></img>
-                                <input type="tel" class="form-control" id="id_phone_num" name="phone_num" placeholder="your mobile phone number">
+                                <div class="icon">
+                                    <img src="{% static 'images/phone.png' %}">
+                                </div>
+                                <span>Phone Number:</span>
+                                <input type="tel" class="form-control" id="id_phone_num" name="phone_num" placeholder="phone number">
                             </div>
                             <div class="form-group">
-                                <label for="InputPassword1">Password:</label>
-                                <img src="{% static 'images/password.png' %}"   style="width:15%;
-                                height:15%;
-                                object-fit:cover;
-                                position: relative;
-                                top: 40px;
-                                right:120px;"></img>
-                                <input type="password" class="form-control" id="Id_password" name="password" required placeholder="Please enter password">
+                                <div class="icon">
+                                    <img src="{% static 'images/password.png' %}">
+                                </div>
+                                <span>Password:</span>
+                                <input type="password" class="form-control" id="Id_password" name="password" required placeholder="password">
                             </div>
                             <div class="form-group">
-                                <label for="id_picture">Picture:</label>
+                                <div class="icon">
+                                    <img src="{% static 'images/file.png' %}">
+                                </div>
+                                <span>Profile Picture:</span>
                                 <input type="file" name="picture" accept="image/*" id="id_picture">
                             </div>
                             <br>

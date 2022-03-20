@@ -1,3 +1,4 @@
+//JavaScript - make a overall rate stars light
 const first = document.getElementById("firstStar");
 const second = document.getElementById("secondStar");
 const third = document.getElementById("thirdStar");
@@ -31,7 +32,7 @@ else if (Math.floor(parseInt(rate.innerHTML)) == 5){
     fifth.classList.add("checked")
 }
 
-
+//JavaScript - make comment session stars light
 const elements = document.querySelectorAll(".stars");
 for(let i = 0; i<elements.length;i++){
     rate = document.getElementsByClassName("rate")[i].innerHTML;
@@ -40,6 +41,7 @@ for(let i = 0; i<elements.length;i++){
     }
 }
 
+//JavaScript - make comment submit stars light
 const stars = document.querySelectorAll(".starRate");
 console.log(stars)
 for(let i = 0; i<stars.length;i++){
@@ -48,3 +50,9 @@ for(let i = 0; i<stars.length;i++){
         stars[i].getElementsByClassName("fa fa-star c")[j].classList.add("checked")
     }
 }
+
+//JQuery - change the menu size when you click
+$('#menu').click(function(){
+    $(this).toggleClass('min');
+    $(this).toggleClass('max');
+});

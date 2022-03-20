@@ -33,8 +33,7 @@ def index(request):
 
 def search(request):
     restaurant_list = Restaurant.objects.order_by("overall_rate")
-    context_dict = {}
-    context_dict["restaurants"] = restaurant_list
+    context_dict = {"restaurants": restaurant_list}
     return render(request, "finder/searchPage.html", context=context_dict)
 
 
