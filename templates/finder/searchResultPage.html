@@ -17,10 +17,7 @@
         </form>
     </div>
     <div id="restaurantsContainer">
-    {% if restaurants_data %}
-        <div class="row" id="title">
-              
-        </div>
+    {% if res > 0  %}
         <ul>
             {% for restaurant,comment in restaurants_data %}
                 <li>

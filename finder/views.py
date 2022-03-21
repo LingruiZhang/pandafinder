@@ -54,6 +54,7 @@ def searchResult(request):
         comments.append(len(commentsNum))
 
     context_dict['restaurants_data'] = zip(restaurants, comments)
+    context_dict['res'] = len(restaurants)
     return render(request, "finder/searchResultPage.html", context=context_dict)
 
 
@@ -101,6 +102,7 @@ def show_restaurant(request, restaurant_id_slug):
             else:
                 print(form.errors)
     context_dict["form"] = form
+    context_dict["link"] = request.build_absolute_uri
     return render(request, "finder/restaurantPage.html", context=context_dict)
 
 
@@ -116,7 +118,6 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             if 'picture' in request.FILES:
-                print("picture")
                 profile.picture = request.FILES['picture']
             profile.save()
             registered = True
@@ -125,7 +126,6 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    # 'registered': registered之后可能会删掉，现在不确定
     return render(request, 'finder/register.html', context={'user_form': user_form,
                                                             'profile_form': profile_form,
                                                             'registered': registered

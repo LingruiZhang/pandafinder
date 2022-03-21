@@ -29,10 +29,10 @@
                         {% for restaurant in restaurants %}
                             <li>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <a href="/finder/restaurant/{{ restaurant.slug }}/">{{ restaurant.r_name }}</a>
                                     </div>
-                                    <div class="col" id="stars">
+                                    <div class="col-6" id="stars">
                                         <span class="fa fa-star fa-1x" id="c_first"></span>
                                         <span class="fa fa-star fa-1x" id="c_second"></span>
                                         <span class="fa fa-star fa-1x" id="c_third"></span>
@@ -50,7 +50,7 @@
                 <div class="container" id="boxHeader">
                     <div class="row">
                         <i class="fa fa-cutlery" id="restaurantIcon"></i>
-                        Restaurant Categories
+                        Top Restaurant Categories
                     </div>
                 </div>
                 <div class="container" id="listContainer">

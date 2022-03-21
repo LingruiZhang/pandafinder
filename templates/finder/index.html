@@ -12,27 +12,24 @@
         <div class="container" id="containerStyle">
             <div class="row">
                 <div class="offset-md-3 col-md-6">
-                    <h2 id = "h2Style">Welcome</h2>
+                    <div class="logo">
+                        <img src="{% static 'images/logo.jpg' %}">
+                    </div>
+                    <span id = "h2Style">Welcome To PandaFinder!</span>
                     <form id="login_form" method="post" action="{% url 'finder:index' %}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
-                                <img src="{% static 'images/user.png' %}"   style="width:15%;
-                                height:15%;
-                                object-fit:cover;
-                                position: relative;
-                                top: 40px;
-                                right:120px;"></img>
-                            <input type="text" aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" name="username" placeholder="Please enter username"  required autofocus>
+                            <div class="icon">
+                                    <img src="{% static 'images/user.png' %}">
+                            </div>
+                            <span>Username:</span>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Please enter username"  required autofocus>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <img src="{% static 'images/password.png' %}"   style="width:15%;
-                            height:15%;
-                            object-fit:cover;
-                            position: relative;
-                            top: 40px;
-                            right:120px;"></img>
+                            <div class="icon">
+                                    <img src="{% static 'images/password.png' %}">
+                            </div>
+                            <span>Password:</span>
                             <input type="password" class="form-control" id="exampleInputPassword"  name="password" placeholder="Please enter password">
                         </div>
                         <br />
@@ -47,6 +44,9 @@
                     <a href="{% url 'finder:search' %}">
                         <button type="button" class="btn btn-success btn-block">As a Guest</button>
                     </a>
+                    <br>
+                    <br>
+
                     </div>
                 </div>
             </div>

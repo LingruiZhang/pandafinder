@@ -32,7 +32,7 @@
     background-color: red;
     color: white;
     height: 2em;
-    width: 50%;
+    width: 75%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -47,11 +47,12 @@
 }
 
 #listContainer{
-    width: 50%;
+    width: 75%;
     border-style: solid;
     border-color: black;
     border-radius: 0px;
     border-width: 0.1ch;
+    padding-left: 0%;
 }
 
 ul{

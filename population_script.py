@@ -991,8 +991,8 @@ def populate():
             "r_phone_num": "0141 332 4554",
             "r_email": "",
             "website_url": "https://smashburger.com",
-            "menu": "restaurant_images/0026_menu.png",
-            "photo": "restaurant_images/0026_photo.png",
+            "menu": "restaurant_images/0026_menu.jpg",
+            "photo": "restaurant_images/0026_photo.jpg",
             "overall_rate": 4.9,
             "category": "USA",
             "lat": 55.864596,
@@ -1367,18 +1367,6 @@ def populate():
             "lng": -4.2543877,
         },
     }
-    # with open("restaurant_info.json") as f2:
-    #     restaurants2 = json.load(f2)
-    #
-    # restaurant_list = {}
-    # for r_id, r1 in restaurants.items():
-    #     for r2 in restaurants2:
-    #         if r1["r_name"] == r2["BusinessName"]:
-    #             r1["lat"] = r2["Geocode_Latitude"]
-    #             r1["lng"] = r2["Geocode_Longitude"]
-    #             restaurant_list[r_id] = r1
-    #             continue
-    # print(list(restaurant_list.items())[5])
 
     commends_list = [restaurant1_comments, restaurant2_comments, restaurant3_comments, restaurant4_comments,
                      restaurant5_comments, restaurant6_comments, restaurant7_comments, restaurant8_comments,
@@ -1431,21 +1419,22 @@ def populate():
             },
     }
 
+    '''add users'''
     for username, user in users.items():
         print(username)
         print(user)
         u = add_user(username, user["password"])
         add_user_profile(u, user["user_profile"]["phone_num"], user["user_profile"]["picture"])
 
+    '''add restaurants'''
     for r_id, restaurant in restaurants.items():
-        # print(restaurant["r_phone_num"])
         add_restaurant(r_id, restaurant["r_name"], restaurant["postcode"],
                        restaurant["address"], restaurant["r_phone_num"],
                        restaurant["r_email"], restaurant["website_url"],
                        restaurant["menu"], restaurant["photo"],
                        restaurant["overall_rate"], restaurant["category"],
                        restaurant["lat"], restaurant["lng"])
-
+    '''add comments'''
     for i in range(len(commends_list)):
         restaurant = Restaurant.objects.all()[i]
         for comment in commends_list[i]:

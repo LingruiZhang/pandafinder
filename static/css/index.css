@@ -3,14 +3,26 @@
 }
 
 #containerStyle{
-    margin-top:10%;
+    margin-top:5%;
     width: 30%;
+    text-align: center;
 }
 
 #h2Style{
-    text-align: center;
+    margin-top: 2%;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: xx-large;
+    color:red;
 }
 
 #buttonFont{
     color:#FFFFFF;
+}
+
+.logo{
+    top: 10px;
+    left:80px;
+    height:150px;
+    width:150px;
 }

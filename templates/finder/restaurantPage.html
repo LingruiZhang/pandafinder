@@ -8,16 +8,24 @@
 {% block body_block %}
     <div class="container">
         {% if restaurant %}
-            <i class="bi-arrow-through-heart-fill" id="doubleHeart"></i>
-            <i id="restaurantName">{{ restaurant.r_name }}</i>
-            <div>
-                <span class="fa fa-star fa-2x" id="firstStar"></span>
-                <span class="fa fa-star fa-2x" id="secondStar"></span>
-                <span class="fa fa-star fa-2x" id="thirdStar"></span>
-                <span class="fa fa-star fa-2x" id="fourthStar"></span>
-                <span class="fa fa-star fa-2x" id="fifthStar"></span>
-                <span id="overallRate" hidden>{{restaurant.overall_rate }}</span>
-                <span id="overallFont" >{{restaurant.overall_rate }}</span>
+            <div class="row">
+                <div class="col-10">
+                    <i class="bi-arrow-through-heart-fill" id="doubleHeart"></i>
+                    <i id="restaurantName">{{ restaurant.r_name }}</i>
+                    <div>
+                        <span class="fa fa-star fa-2x" id="firstStar"></span>
+                        <span class="fa fa-star fa-2x" id="secondStar"></span>
+                        <span class="fa fa-star fa-2x" id="thirdStar"></span>
+                        <span class="fa fa-star fa-2x" id="fourthStar"></span>
+                        <span class="fa fa-star fa-2x" id="fifthStar"></span>
+                        <span id="overallRate" hidden>{{restaurant.overall_rate }}</span>
+                        <span id="overallFont" >{{restaurant.overall_rate }}</span>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <p id="copy" hidden>{{ request.build_absolute_uri }}</p>
+                    <button  onclick="copy_r_link('#copy')" id="copyButton">Click to Share</button>
+                </div>
             </div>
             <br>
             <br>
@@ -40,15 +48,9 @@
                             height:325px;
                             object-fit: cover;}
                     </style>
-                    <script>
-                        $(function(){
-                            $('#menu').click(function(){
-                                $(this).toggleClass('min');
-                                $(this).toggleClass('max');
-                            });
-                        });
-                    </script>
-                    <img id='menu' class='min' src='{{ MEDIA_URL }}{{ restaurant.menu }}' alt="menu">
+                    <div>
+                        <img id='menu' class='min' src='{{ MEDIA_URL }}{{ restaurant.menu }}' alt="menu">
+                    </div>
                 </div>
                 <div class="col">
                     <div>
@@ -86,10 +88,8 @@
                             <span id="allComments" hidden>{{ comments }} </span>
                             <div class="row" id="commentSession">
                                 <div class="col-2">
-                                    <div>
-                                        <img class="square"  src="{{ MEDIA_URL }}{{ comment.userprofile.picture }}" alt="user_picture"
-                                            style="width:50px;
-                                                height:50px;"/>
+                                    <div class="commentUserProfile">
+                                        <img class="square"  src="{{ MEDIA_URL }}{{ comment.userprofile.picture }}" alt="user_picture"/>
                                     </div>
                                     <div> {{ comment.userprofile.user.username }} </div>
                                 </div>
@@ -132,7 +132,7 @@
                     <i class="bi-pencil-square" id="subtitleIcon"></i>
                     <i id="overallFont">Make Your Own Comment!</i>
                     <div>
-                        <form id="comment_form" method="post" action="/finder/restaurant/{{ restaurant.slug }}/" enctype="multipart/form-data">
+                        <form id="comment_form" method="post" action="{% url "finder:show_restaurant"  restaurant.slug %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for hidden in form.hidden_fields %}
                                 {{ hidden }}
