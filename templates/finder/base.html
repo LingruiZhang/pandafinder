@@ -37,7 +37,7 @@
         {% if user.is_authenticated %}
             <div class="profileBase">
                 {% if user.userprofile.picture %}
-                  <img src="{{ MEDIA_URL }}{{ user.userprofile.picture }}" alt="Profile Picture"/>
+                  <img src="{{ MEDIA_URL }}{{ user.userprofile.picture }}" alt="Profile Picture" id="defaultProfileImg"/>
                 {% else %}
                   <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture" id="defaultProfileImg"/>
                 {% endif %}
