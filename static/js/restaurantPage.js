@@ -58,10 +58,11 @@ $('#menu').click(function(){
 });
 
 //JQuery - copy the current URL
-function copy_r_link(element) {
-  var $input = $("<input>");
+//get the idea from https://codepen.io/shaikmaqsood/pen/XmydxJ
+function copyURL(element) {
+  var $temp = $("<input>");
   $("body").append($temp);
-  $input.val($(element).text()).select();
+  $temp.val($(element).text()).select();
   document.execCommand("copy");
-  $input.remove();
+  $temp.remove();
 }

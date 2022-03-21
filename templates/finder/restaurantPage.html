@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <div class="col-1">
-                    <p id="copy" hidden>{{ request.build_absolute_uri }}</p>
-                    <button  onclick="copy_r_link('#copy')" id="copyButton">Click to Share</button>
+                    <p id="url_infor">{{ request.build_absolute_uri }}</p>
+                    <button onclick="copyURL('#url_infor')" id="copyButton">Click to Share</button>
                 </div>
             </div>
             <br>
