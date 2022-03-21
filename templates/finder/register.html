@@ -8,7 +8,12 @@ Register
 {% block body_block %}
 
     <main class="main" role="main">
+
         <div class="container" id="containerStyle">
+        <div class="form-group adjustText">
+            <span id = "h2Style">{{ user_form.errors }}</span>
+            <span id = "h2Style">{{ profile_form.errors }}</span>
+        </div>
             {% if registered %}
             Panda says: <strong>Thank you for registering!</strong><br>
             <a href="{% url 'finder:index' %}">Return to the homepage.</a><br />
@@ -16,7 +21,6 @@ Register
                 <div class="row">
                     <div class="offset-md-3 col-md-6">
                     <form id="user_form" method="post" action="{% url 'finder:register' %}" enctype="multipart/form-data">
-                        {% csrf_token %}
                         {% csrf_token %}
                             <h2 style="text-align: center;">Register</h2>
                             <div class="form-group" >

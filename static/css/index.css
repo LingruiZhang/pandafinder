@@ -5,6 +5,7 @@
 #containerStyle{
     margin-top:5%;
     width: 30%;
+    text-align: center;
 }
 
 #h2Style{
@@ -12,7 +13,8 @@
     white-space: nowrap;
     font-family: monospace;
     font-weight: bold;
-    color:#0E185F;
+    font-size: xx-large;
+    color:red;
 }
 
 #buttonFont{
@@ -20,9 +22,12 @@
 }
 
 .logo{
-    position: relative;
     top: 10px;
     left:80px;
     height:150px;
     width:150px;
+}
+
+.adjustText{
+    text-align: left;
 }
