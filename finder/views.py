@@ -41,7 +41,8 @@ def searchResult(request):
     # restaurant_list = Restaurant.objects.order_by("overall_rate")
     if request.method == 'POST':
         query = request.POST.get('keyword')
-        object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query) | Q(category__icontains=query) | Q(postcode__icontains=query)).order_by('-overall_rate')[:10]
+        object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query) | Q(category__icontains=query)
+                                                | Q(postcode__icontains=query)).order_by('-overall_rate')[:10]
         return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
     else:
         return render(request, "finder/searchResultPage.html", context={'restaurants': None})
