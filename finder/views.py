@@ -45,25 +45,27 @@ def search(request):
 
 def searchResult(request):
     # restaurant_list = Restaurant.objects.order_by("overall_rate")
-    # if request.method == 'POST':
+    context_dict = {}
+    comments = []
+    if request.method == 'POST':
     #     query = request.POST.get('keyword')
     #     object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query) | Q(category__icontains=query)
     #                                             | Q(postcode__icontains=query)).order_by('-overall_rate')[:10]
     #     return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
     # else:
     #     return render(request, "finder/searchResultPage.html", context={'restaurants': None})
-    query = request.POST.get('keyword')
-    restaurants = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query) | Q(category__icontains=query) | Q(postcode__icontains=query)).order_by('-overall_rate')[:10]
-    #                                             | Q(postcode__icontains=query)).order_by('-overall_rate')[:10])
-    context_dict = {}
-    comments = []
-    
-    for restaurant in restaurants:  
-        commentsNum = Comment.objects.filter(restaurant=restaurant)
-        comments.append(len(commentsNum))
+        query = request.POST.get('keyword')
+        restaurants = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query) | Q(category__icontains=query) | Q(postcode__icontains=query)).order_by('-overall_rate')[:10]
+        #                                             | Q(postcode__icontains=query)).order_by('-overall_rate')[:10])
+        context_dict = {}
+        comments = []
 
-    context_dict['restaurants_data'] = zip(restaurants, comments)
-    context_dict['res'] = len(restaurants)
+        for restaurant in restaurants:
+            commentsNum = Comment.objects.filter(restaurant=restaurant)
+            comments.append(len(commentsNum))
+
+        context_dict['restaurants_data'] = zip(restaurants, comments)
+        context_dict['res'] = len(restaurants)
     return render(request, "finder/searchResultPage.html", context=context_dict)
 
 
