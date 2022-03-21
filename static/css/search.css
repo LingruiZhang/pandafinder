@@ -1,0 +1,68 @@
+#searchContainer {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: fit-content ;
+}
+
+#searchButton {
+    width: 100%;
+    position: relative;
+    margin-left: 15%;
+}
+
+#searchBar {
+    width: 40em;
+}
+
+#restaurantsContainer {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    align-content: center;
+}
+
+#restaurantsRow {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 15%;
+}
+
+#boxHeader {
+    background-color: red;
+    color: white;
+    height: 2em;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 0px;
+}
+
+#restaurantIcon{
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 1.5%;
+}
+
+#listContainer{
+    width: 50%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 0px;
+    border-width: 0.1ch;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a:link{
+    color: black;
+    font-size: small;
+}
+
+#stars{
+    color: red;
+}

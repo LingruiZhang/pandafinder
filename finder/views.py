@@ -1,3 +1,5 @@
+from cgitb import reset
+from traceback import print_tb
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -32,19 +34,27 @@ def index(request):
 
 
 def search(request):
-    restaurant_list = Restaurant.objects.order_by("overall_rate")
+    restaurant_list = Restaurant.objects.order_by("overall_rate")[:5]
+    category_list = Restaurant.objects.values("category").distinct()[:5]
+
     context_dict = {}
     context_dict["restaurants"] = restaurant_list
+    context_dict["categories"] = category_list
     return render(request, "finder/searchPage.html", context=context_dict)
 
 
 def searchResult(request):
-    # restaurant_list = Restaurant.objects.order_by("overall_rate")
-
     query = request.POST.get('keyword')
-    object_list = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query))
+    restaurants = Restaurant.objects.filter(Q(r_name__icontains=query) | Q(address__icontains=query))
+    context_dict = {}
+    comments = []
     
-    return render(request, "finder/searchResultPage.html", context={'restaurants': object_list})
+    for restaurant in restaurants:  
+        commentsNum = Comment.objects.filter(restaurant=restaurant)
+        comments.append(len(commentsNum))
+
+    context_dict['restaurants_data'] = zip(restaurants, comments)
+    return render(request, "finder/searchResultPage.html", context=context_dict)
 
 
 def recalculate_overall_rate(restaurant_id_slug):

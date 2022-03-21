@@ -1,47 +1,70 @@
 {% extends 'finder/base.html' %}
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}">
-
 {% block title_block %}
-    Search Result
 {% endblock %}
 
 {% block body_block %}
-    <header class="p-3 mb-3 border-bottom" style="max-width:100%">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-dark">Home</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-            </ul>
-<!-- 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form> -->
-
-            <div class="dropdown text-end"  style="float: right;">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'images/profile.jpg' %}" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
-        </div>
-      
-    </header>
-    <div>
+    <div class="container" id="searchContainer">
+        
         <form id="search_form" method="post" action="{% url 'finder:searchResult' %}">
             {% csrf_token %}
-            <input name="keyword" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            <div class="row">
+                <div class="col-9"><input id="searchBar" name="keyword" type="search" class="form-control" placeholder="Type restaurant name or location..." aria-label="Search"></div>
+                <div class="col-1" id="searchButton"><button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button></div>
+            </div>
         </form>
+    </div>
+    <div id="restaurantsContainer">
+        <div class="row" id="restaurantsRow">
+            <div class="col text-center">
+                <div class="container" id="boxHeader">
+                    <div class="row">
+                        <i class="fa fa-cutlery" id="restaurantIcon"></i>
+                        Top Rated Restaurants
+                    </div>
+                </div>
+                <div class="container" id="listContainer">
+                    <ul>
+                        {% for restaurant in restaurants %}
+                            <li>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/finder/restaurant/{{ restaurant.slug }}/">{{ restaurant.r_name }}</a>
+                                    </div>
+                                    <div class="col" id="stars">
+                                        <span class="fa fa-star fa-1x" id="c_first"></span>
+                                        <span class="fa fa-star fa-1x" id="c_second"></span>
+                                        <span class="fa fa-star fa-1x" id="c_third"></span>
+                                        <span class="fa fa-star fa-1x" id="c_fourth"></span>
+                                        <span class="fa fa-star fa-1x" id="c_fifth"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+              </div>
+              
+              <div class="col text-center">
+                <div class="container" id="boxHeader">
+                    <div class="row">
+                        <i class="fa fa-cutlery" id="restaurantIcon"></i>
+                        Restaurant Categories
+                    </div>
+                </div>
+                <div class="container" id="listContainer">
+                    <ul>
+                        {% for category in categories %}
+                            <li>
+                                <div class="col">
+                                    {{ category.category }}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+        </div>
     </div>
 
 {% endblock %}

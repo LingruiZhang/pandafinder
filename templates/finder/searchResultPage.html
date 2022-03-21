@@ -1,23 +1,60 @@
 {% extends 'finder/base.html' %}
-
+{% load static %}
 
 {% block title_block %}
     Search Result
 {% endblock %}
 
 {% block body_block %}
-    <h1>Search Result</h1>
-    <div>
-    {% if restaurants %}
+    <div class="container" id="searchContainer">
+            
+        <form id="search_form" method="post" action="{% url 'finder:searchResult' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-9"><input id="searchBar" name="keyword" type="search" class="form-control" placeholder="Type restaurant name or location..." aria-label="Search"></div>
+                <div class="col-1" id="searchButton"><button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button></div>
+            </div>
+        </form>
+    </div>
+    <div id="restaurantsContainer">
+    {% if restaurants_data %}
+        <div class="row" id="title">
+              
+        </div>
         <ul>
-            {% for restaurant in restaurants %}
+            {% for restaurant,comment in restaurants_data %}
                 <li>
-                    <a href="/finder/restaurant/{{ restaurant.slug }}/">{{ restaurant.r_name }}</a>
+                    <div class="row" >
+                        <div id="photoContainer" class="col-2">
+                            <img class="square" src="{{ MEDIA_URL }}{{ restaurant.photo }}" alt="Restaurant photo"/>
+                        </div>
+                        <div class="col-9">
+                            <b><a href="/finder/restaurant/{{ restaurant.slug }}/">{{ restaurant.r_name }}</a></b>
+                            <br>
+                            <small>{{ restaurant.address }}</small>
+                            <br>
+                            <small>{{ comment }} reviews</small>
+                            <br>
+                            <div id="stars">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span id="rate" >{{restaurant.overall_rate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <a href="/finder/restaurant/{{ restaurant.slug }}/" id="arrowLink"><i class="fa fa-angle-right" id="arrow"></i></a>
+                        </div>
+                    </div>
+                    <hr class="solid">
+                    <br>                    
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <strong> There are no restaurants information right now.</strong>\
+        <strong> There are no restaurants information right now.</strong>
     {% endif %}
     </div>
 {% endblock %}
